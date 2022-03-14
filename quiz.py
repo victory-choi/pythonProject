@@ -176,3 +176,54 @@ print("총 {} 대의 매물이 있습니다.".format(len(houses)))
 for house in houses:
     house.show_detail()
 
+'''
+예외처리 퀴즈
+동네에 항상 대기 손님이 있는 맛있는 치킨집이 잇습니다. 
+대기 손님의 치킨 요리 시간을 줄이고자 자동주문 시스템을 제작하였습니다.
+시스템 코드를 확인하고 적절한 예외처리 구문을 넣으세요
+
+1. 1보다 작거나 숫자가 아닌 입력값이 들어올때는 ValueError 로 처리할것 -> 출력메시지는 "잘못된값을 입력하였습니다."
+
+2. 대기손님이 주문할 수 있는 총 치킨량은 10마리로 한정
+치킨 소진시 사용자 정이에러 [SoldOutError]를 발생시키고 프로그램 종료 -> 출력메시지는 "재고가 소진되어 더 이상 주문을 받지 않습니다."
+'''
+
+chicken = 10
+waiting = 1 # 홀안에는 현재 만석. 대기번호 1부터 시작
+
+class SoldOutError(Exception):
+    pass
+
+try:
+    while (True):
+        print("[남은치킨] : {0}".format(chicken))
+        order = int(input("치킨 몇 마리 주문하시겠습니까?"))
+        if order > chicken:  # 남은 치킨보다 주문량이 많을때
+            print("재료가 부족합니다.")
+        elif order <= 0:
+            raise ValueError # 0마리 이하일때는 ValueError 를 일으켜라
+        else:
+            print("[대기번호 {0}] {1}마리 주문 완료되었습니다.".format(waiting, order))
+            waiting += 1
+            chicken -= order
+        if chicken == 0:
+            raise SoldOutError
+except ValueError:
+    print("잘못된 값을 입력하였습니다.")
+except SoldOutError:
+    print("재고가 소진되어 더이상 주문을 받지않습니다.")
+
+
+'''
+프로젝트 내에 나만의 시그니처를 만드는 모듈을 만드세요
+
+모듈 파일명은 victory.py
+
+import victory
+victory.sign()
+
+이 프로그램은 victory에 의해 만들어졌습니다.
+유튜브 : http://youtube.com
+이메일 : tachymeter200@gmail.com
+
+'''

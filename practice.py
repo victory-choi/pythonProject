@@ -734,7 +734,8 @@ profile_file.close()
 with.... 건너뛰자일단
 '''
 
-
+import victory
+victory.sign()
 
 
 

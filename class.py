@@ -346,3 +346,25 @@ except ValueError:
     print("에러가 발생했어요")
 except BigNumberError:
     print("에러가 발생했어요. 한자리 숫자만 입력하세요")
+
+'''
+finally
+예외처리구문에서 무조건 실행되는 구문
+
+'''
+class BigNumberError(Exception):
+    pass
+try:
+    print("나누기 전용 계산기")
+    num1 = int(input("첫번째 숫자를 입력하세요 : "))
+    num2 = int(input("첫번째 숫자를 입력하세요 : "))
+    if num1 >- 10 or num2 >= 10:
+        raise BigNumberError
+    print("{0} / {1} = {2} ".format(num1, num2, int(num1/num2)))
+except ValueError:
+    print("에러가 발생했어요")
+except BigNumberError:
+    print("에러가 발생했어요. 한자리 숫자만 입력하세요")
+finally:
+    print("계산기를 이용해주셔서 감사합니다.") # bignumber처리 되었음에도 문자가 출력됨.
+
